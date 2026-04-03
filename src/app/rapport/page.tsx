@@ -347,7 +347,7 @@ export default function RapportVoorbeeld() {
         <div className="mx-auto max-w-3xl px-5 py-8 sm:px-8 sm:py-12">
           <div className="flex items-start justify-between">
             <div>
-              <div className="flex items-center gap-3">
+              <a href="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
                 <span className="font-display text-3xl tracking-[0.2em] text-accent/30 sm:text-4xl">
                   EA
                 </span>
@@ -359,7 +359,7 @@ export default function RapportVoorbeeld() {
                     Echte training voelt zo.
                   </p>
                 </div>
-              </div>
+              </a>
             </div>
             <div className="text-right">
               <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-accent/60">
