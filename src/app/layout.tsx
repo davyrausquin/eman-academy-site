@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
+import PasswordGate from "./password-gate"; // TIJDELIJK — verwijder deze regel om wachtwoord uit te zetten
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="nl" className={`${inter.variable} ${bebas.variable}`}>
-      <body>{children}</body>
+      <body><PasswordGate>{children}</PasswordGate></body>
     </html>
   );
 }
