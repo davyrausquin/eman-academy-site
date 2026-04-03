@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maandrapport — Eman Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a3a5c;
+  --white: #ffffff;
+  --gold: #d4a843;
+  --bg: #f5f6f8;
+  --text: #1a1a1a;
+  --text-muted: #6b7280;
+  --border: #e2e5ea;
+  --green: #16a34a;
+  --red: #dc2626;
+  --gray: #9ca3af;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* ── Cards ── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  margin-bottom: 16px;
+  transition: box-shadow 0.2s;
+}
+
+.card-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--primary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-title::before {
+  content: '';
+  width: 3px;
+  height: 16px;
+  background: var(--gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* ── Header ── */
+.header {
+  background: var(--primary);
+  color: var(--white);
+  padding: 32px 24px;
+  border-radius: var(--radius);
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.logo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--gold);
+  margin: 0 auto 16px;
+  background: rgba(255,255,255,0.08);
+}
+
+.header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+
+.header-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.header-fields .full-width { grid-column: 1 / -1; }
+
+/* ── Inputs ── */
+input, select, textarea {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  -webkit-appearance: none;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,168,67,0.15);
+}
+
+.header input, .header select {
+  background: rgba(255,255,255,0.1);
+  border-color: rgba(255,255,255,0.2);
+  color: var(--white);
+}
+.header input::placeholder { color: rgba(255,255,255,0.5); }
+.header input:focus, .header select:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212,168,67,0.25);
+}
+.header select option { color: var(--text); background: var(--white); }
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.header label { color: rgba(255,255,255,0.6); }
+
+/* ── Profile grid ── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.profile-grid .full-width { grid-column: 1 / -1; }
+.sessions-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sessions-row input { width: 60px; text-align: center; }
+.sessions-row span { color: var(--text-muted); font-weight: 600; font-size: 0.9rem; }
+
+/* ── Sliders ── */
+.slider-group { margin-bottom: 14px; }
+.slider-group:last-child { margin-bottom: 0; }
+
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.slider-label-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.slider-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary);
+  min-width: 28px;
+  text-align: right;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--border);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--white);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 3px solid var(--white);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  cursor: pointer;
+}
+
+input[type="range"].prev-slider::-webkit-slider-thumb {
+  background: var(--gray);
+  width: 18px; height: 18px;
+}
+input[type="range"].prev-slider::-moz-range-thumb {
+  background: var(--gray);
+  width: 18px; height: 18px;
+}
+
+.slider-section-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+  margin-top: 20px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.slider-section-title:first-child { margin-top: 0; }
+
+/* ── Radar Chart ── */
+.radar-wrap {
+  display: flex;
+  justify-content: center;
+  margin: 16px 0 8px;
+}
+
+.radar-wrap svg { max-width: 100%; height: auto; }
+
+.radar-label {
+  font-size: 11px;
+  font-weight: 600;
+  fill: var(--primary);
+}
+
+.radar-grid { stroke: var(--border); stroke-width: 0.5; fill: none; }
+.radar-axis { stroke: var(--border); stroke-width: 0.5; }
+
+.radar-polygon-prev {
+  fill: rgba(156, 163, 175, 0.15);
+  stroke: var(--gray);
+  stroke-width: 1.5;
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.radar-polygon-curr {
+  fill: rgba(26, 58, 92, 0.18);
+  stroke: var(--primary);
+  stroke-width: 2;
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.radar-dot {
+  fill: var(--primary);
+  transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── Bar Chart ── */
+.bar-group { margin-bottom: 14px; }
+.bar-group:last-child { margin-bottom: 0; }
+
+.bar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.bar-cat { font-size: 0.8rem; font-weight: 600; }
+
+.bar-scores {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+}
+
+.bar-score-curr { font-weight: 700; color: var(--primary); }
+
+.bar-delta {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.bar-delta.positive { color: var(--green); background: rgba(22,163,74,0.1); }
+.bar-delta.negative { color: var(--red); background: rgba(220,38,38,0.1); }
+.bar-delta.neutral { color: var(--gray); background: rgba(156,163,175,0.1); }
+
+.bar-track {
+  height: 10px;
+  background: var(--bg);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bar-fill-prev {
+  position: absolute;
+  top: 0; left: 0; height: 100%;
+  background: rgba(156,163,175,0.3);
+  border-radius: 5px;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+.bar-fill-curr {
+  position: absolute;
+  top: 0; left: 0; height: 100%;
+  background: var(--primary);
+  border-radius: 5px;
+  transition: width 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ── Attendance ── */
+.attendance-bar-track {
+  height: 12px;
+  background: var(--bg);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.attendance-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--gold));
+  border-radius: 6px;
+  transition: width 0.4s ease;
+}
+
+.attendance-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.attendance-pct { font-weight: 700; color: var(--primary); }
+.attendance-detail { color: var(--text-muted); }
+
+.attendance-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.att-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  transition: background 0.3s;
+}
+.att-dot.present { background: var(--primary); }
+.att-dot.absent { background: var(--border); }
+
+/* ── Goals ── */
+.goal-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.goal-row:last-child { margin-bottom: 0; }
+
+.goal-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.goal-row input { flex: 1; }
+
+/* ── Feedback ── */
+.feedback-section { margin-bottom: 16px; }
+.feedback-section:last-child { margin-bottom: 0; }
+
+.feedback-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ── Buttons ── */
+.btn-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  flex: 1;
+  min-width: 140px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+.btn-primary:hover { box-shadow: 0 6px 20px rgba(26,58,92,0.25); }
+
+.btn-gold {
+  background: var(--gold);
+  color: var(--white);
+  box-shadow: var(--shadow-md);
+}
+.btn-gold:hover { box-shadow: 0 6px 20px rgba(212,168,67,0.3); }
+
+.btn-confirm {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--green);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  box-shadow: 0 4px 16px rgba(22,163,74,0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+  z-index: 100;
+}
+
+.btn-confirm.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 24px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.footer-brand {
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.footer-tagline {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* ── Legend ── */
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 8px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+}
+.legend-dot.curr { background: var(--primary); }
+.legend-dot.prev { background: var(--gray); }
+
+/* ── Print ── */
+@media print {
+  body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .container { max-width: 100%; padding: 0; }
+  .card { box-shadow: none; break-inside: avoid; border: 1px solid #eee; }
+  .header { border-radius: 0; }
+
+  input, select, textarea, input[type="range"] { display: none !important; }
+  .slider-group, .slider-section-title { display: none !important; }
+  .btn-row { display: none !important; }
+  .btn-confirm { display: none !important; }
+
+  .print-value { display: inline !important; font-weight: 600; }
+  .print-block { display: block !important; }
+  .header-fields { display: none !important; }
+  .header-print-info { display: block !important; }
+  .profile-grid { display: none !important; }
+  .profile-print { display: grid !important; }
+  .feedback-print { display: block !important; white-space: pre-wrap; }
+  .feedback-section textarea { display: none !important; }
+  .goal-row input { display: none !important; }
+  .goal-print { display: inline !important; }
+  .sessions-row { display: none !important; }
+}
+
+.print-value, .print-block, .header-print-info, .profile-print, .feedback-print, .goal-print { display: none; }
+
+.profile-print {
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  font-size: 0.9rem;
+}
+.profile-print span { font-weight: 400; }
+.profile-print strong { font-weight: 600; }
+
+/* ── Responsive ── */
+@media (max-width: 400px) {
+  .container { padding: 10px; }
+  .card { padding: 18px; }
+  .header { padding: 24px 18px; }
+  .header-fields { grid-template-columns: 1fr; }
+  .profile-grid { grid-template-columns: 1fr; }
+  .btn-row { flex-direction: column; }
+}
+
+/* ── Animation ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.card, .header { animation: fadeInUp 0.4s ease both; }
+.card:nth-child(2) { animation-delay: 0.05s; }
+.card:nth-child(3) { animation-delay: 0.1s; }
+.card:nth-child(4) { animation-delay: 0.15s; }
+.card:nth-child(5) { animation-delay: 0.2s; }
+.card:nth-child(6) { animation-delay: 0.25s; }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ═══ HEADER ═══ -->
+  <div class="header">
+    <div class="logo">EA</div>
+    <h1>Maandrapport</h1>
+
+    <div class="header-fields">
+      <div>
+        <label for="h-month">Maand</label>
+        <select id="h-month">
+          <option value="januari">januari</option><option value="februari">februari</option>
+          <option value="maart">maart</option><option value="april" selected>april</option>
+          <option value="mei">mei</option><option value="juni">juni</option>
+          <option value="juli">juli</option><option value="augustus">augustus</option>
+          <option value="september">september</option><option value="oktober">oktober</option>
+          <option value="november">november</option><option value="december">december</option>
+        </select>
+      </div>
+      <div>
+        <label for="h-year">Jaar</label>
+        <input type="number" id="h-year" value="2026" min="2024" max="2035">
+      </div>
+      <div class="full-width">
+        <label for="h-player">Speler</label>
+        <input type="text" id="h-player" placeholder="Jayden van Dijk">
+      </div>
+      <div class="full-width">
+        <label for="h-cat">Categorie</label>
+        <select id="h-cat">
+          <option>JO-9</option><option>JO-10</option><option selected>JO-11</option>
+          <option>JO-12</option><option>JO-13</option><option>JO-14</option><option>JO-15</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="header-print-info">
+      <p><span class="print-month"></span> <span class="print-year"></span></p>
+      <p style="font-size:1.1rem;font-weight:600;margin-top:4px" class="print-player-name"></p>
+      <p class="print-cat-top" style="opacity:0.7"></p>
+    </div>
+  </div>
+
+  <!-- ═══ SPELERPROFIEL ═══ -->
+  <div class="card">
+    <div class="card-title">Spelerprofiel</div>
+    <div class="profile-grid">
+      <div>
+        <label for="p-name">Naam</label>
+        <input type="text" id="p-name" placeholder="Jayden van Dijk">
+      </div>
+      <div>
+        <label for="p-age">Leeftijd</label>
+        <input type="number" id="p-age" placeholder="10" min="5" max="18">
+      </div>
+      <div>
+        <label for="p-club">Club</label>
+        <input type="text" id="p-club" placeholder="ADO Den Haag">
+      </div>
+      <div>
+        <label for="p-cat">Categorie</label>
+        <select id="p-cat">
+          <option>JO-9</option><option>JO-10</option><option selected>JO-11</option>
+          <option>JO-12</option><option>JO-13</option><option>JO-14</option><option>JO-15</option>
+        </select>
+      </div>
+      <div class="full-width">
+        <label for="p-pos">Positie</label>
+        <input type="text" id="p-pos" placeholder="Aanvallende middenvelder">
+      </div>
+      <div class="full-width">
+        <label>Sessies aanwezig / totaal</label>
+        <div class="sessions-row">
+          <input type="number" id="p-sess-present" placeholder="7" min="0" max="30">
+          <span>/</span>
+          <input type="number" id="p-sess-total" placeholder="8" min="1" max="30">
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-print">
+      <div><strong>Naam:</strong> <span class="pp-name"></span></div>
+      <div><strong>Leeftijd:</strong> <span class="pp-age"></span></div>
+      <div><strong>Club:</strong> <span class="pp-club"></span></div>
+      <div><strong>Categorie:</strong> <span class="pp-cat"></span></div>
+      <div><strong>Positie:</strong> <span class="pp-pos"></span></div>
+      <div><strong>Sessies:</strong> <span class="pp-sess"></span></div>
+    </div>
+  </div>
+
+  <!-- ═══ RADAR CHART + SLIDERS ═══ -->
+  <div class="card">
+    <div class="card-title">Prestatie-overzicht</div>
+
+    <div class="radar-wrap">
+      <svg id="radar" viewBox="0 0 300 300" width="300" height="300"></svg>
+    </div>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot curr"></div> Deze maand</div>
+      <div class="legend-item"><div class="legend-dot prev"></div> Vorige maand</div>
+    </div>
+
+    <div class="slider-section-title">Deze maand</div>
+    <div id="sliders-curr"></div>
+
+    <div class="slider-section-title">Vorige maand</div>
+    <div id="sliders-prev"></div>
+  </div>
+
+  <!-- ═══ BAR CHART ═══ -->
+  <div class="card">
+    <div class="card-title">Vergelijking per categorie</div>
+    <div id="bars"></div>
+  </div>
+
+  <!-- ═══ FEEDBACK ═══ -->
+  <div class="card">
+    <div class="card-title">Coach Feedback</div>
+
+    <div class="feedback-section">
+      <div class="feedback-label"><span style="font-size:1.1rem">&#x1F4AA;</span> Wat goed ging</div>
+      <textarea id="fb-good" placeholder="Mentaal de sterkste van de groep deze maand. Gaf niet op bij de zware conditieoefening terwijl anderen stopten."></textarea>
+      <div class="feedback-print fb-good-print"></div>
+    </div>
+
+    <div class="feedback-section">
+      <div class="feedback-label"><span style="font-size:1.1rem">&#x1F3AF;</span> Waar we aan werken</div>
+      <textarea id="fb-work" placeholder="Passing onder druk: Jayden kaatst te gehaast als er een tegenstander dichtbij komt. We werken aan rust aan de bal."></textarea>
+      <div class="feedback-print fb-work-print"></div>
+    </div>
+  </div>
+
+  <!-- ═══ DOELEN ═══ -->
+  <div class="card">
+    <div class="card-title">Doelen komende maand</div>
+    <div class="goal-row">
+      <div class="goal-num">1</div>
+      <input type="text" id="goal-1" placeholder="Minimaal 3x per training een dieptepass proberen">
+      <span class="goal-print gp-1"></span>
+    </div>
+    <div class="goal-row">
+      <div class="goal-num">2</div>
+      <input type="text" id="goal-2" placeholder="Bij elke partijvorm coachen naar medespelers">
+      <span class="goal-print gp-2"></span>
+    </div>
+    <div class="goal-row">
+      <div class="goal-num">3</div>
+      <input type="text" id="goal-3" placeholder="Schottraining: 10 schoten per sessie op doel">
+      <span class="goal-print gp-3"></span>
+    </div>
+  </div>
+
+  <!-- ═══ AANWEZIGHEID ═══ -->
+  <div class="card">
+    <div class="card-title">Aanwezigheid</div>
+    <div class="attendance-bar-track">
+      <div class="attendance-bar-fill" id="att-fill" style="width:0%"></div>
+    </div>
+    <div class="attendance-text">
+      <span class="attendance-pct" id="att-pct">—</span>
+      <span class="attendance-detail" id="att-detail">—</span>
+    </div>
+    <div class="attendance-dots" id="att-dots"></div>
+  </div>
+
+  <!-- ═══ BUTTONS ═══ -->
+  <div class="btn-row">
+    <button class="btn btn-primary" onclick="downloadPDF()">&#x1F4C4; Download als PDF</button>
+    <button class="btn btn-gold" onclick="copyWhatsApp()">&#x1F4CB; Kopieer als WhatsApp-tekst</button>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <div class="footer-brand">Eman Academy</div>
+    <div class="footer-tagline">"Echte training voelt zo."</div>
+    <div style="margin-top:6px">www.emanacademy.nl</div>
+    <div>info@emanacademy.nl &middot; +31 6 00 00 00 00</div>
+  </div>
+
+</div>
+
+<div class="btn-confirm" id="copy-toast">Gekopieerd!</div>
+
+<script>
+(function () {
+  // ── Categories ──
+  const cats = ['Techniek', 'Snelheid', 'Mentaliteit', 'Passing', 'Afwerking'];
+  const catIcons = { Techniek: '\u2699\uFE0F', Snelheid: '\u26A1', Mentaliteit: '\uD83E\uDDE0', Passing: '\uD83C\uDFAF', Afwerking: '\uD83D\uDD25' };
+
+  const currScores = [7, 6, 9, 5, 7];
+  const prevScores = [6, 6, 7, 5, 6];
+
+  // ── Build Sliders ──
+  function buildSliders(containerId, scores, isPrev) {
+    const el = document.getElementById(containerId);
+    cats.forEach((c, i) => {
+      const div = document.createElement('div');
+      div.className = 'slider-group';
+      div.innerHTML = `
+        <div class="slider-label">
+          <span class="slider-label-text">${c}</span>
+          <span class="slider-value" id="sv-${isPrev ? 'p' : 'c'}-${i}">${scores[i]}</span>
+        </div>
+        <input type="range" min="1" max="10" value="${scores[i]}" class="${isPrev ? 'prev-slider' : ''}" data-idx="${i}" data-type="${isPrev ? 'p' : 'c'}">
+      `;
+      el.appendChild(div);
+    });
+  }
+
+  buildSliders('sliders-curr', currScores, false);
+  buildSliders('sliders-prev', prevScores, true);
+
+  // ── Radar math ──
+  const cx = 150, cy = 150, maxR = 115;
+  const angleOff = -Math.PI / 2; // start top
+
+  function polarX(val, i) { return cx + (val / 10) * maxR * Math.cos(angleOff + (2 * Math.PI * i) / 5); }
+  function polarY(val, i) { return cy + (val / 10) * maxR * Math.sin(angleOff + (2 * Math.PI * i) / 5); }
+  function polyPoints(scores) { return scores.map((v, i) => `${polarX(v, i)},${polarY(v, i)}`).join(' '); }
+
+  // ── Build Radar ──
+  function initRadar() {
+    const svg = document.getElementById('radar');
+    let html = '';
+    // grid
+    [2, 4, 6, 8, 10].forEach(lv => {
+      const pts = cats.map((_, i) => `${polarX(lv, i)},${polarY(lv, i)}`).join(' ');
+      html += `<polygon points="${pts}" class="radar-grid"/>`;
+    });
+    // axes
+    cats.forEach((_, i) => {
+      html += `<line x1="${cx}" y1="${cy}" x2="${polarX(10, i)}" y2="${polarY(10, i)}" class="radar-axis"/>`;
+    });
+    // labels
+    const labelOff = 18;
+    cats.forEach((c, i) => {
+      const lx = cx + (maxR + labelOff) / maxR * (polarX(10, i) - cx);
+      const ly = cy + (maxR + labelOff) / maxR * (polarY(10, i) - cy);
+      let anchor = 'middle';
+      if (lx < cx - 10) anchor = 'end';
+      else if (lx > cx + 10) anchor = 'start';
+      const dy = ly < cy ? -2 : (ly > cy + 30 ? 8 : 4);
+      html += `<text x="${lx}" y="${ly + dy}" text-anchor="${anchor}" class="radar-label">${c}</text>`;
+    });
+    // polygons
+    html += `<polygon id="radar-prev" points="${polyPoints(prevScores)}" class="radar-polygon-prev"/>`;
+    html += `<polygon id="radar-curr" points="${polyPoints(currScores)}" class="radar-polygon-curr"/>`;
+    // dots
+    currScores.forEach((v, i) => {
+      html += `<circle id="radar-dot-${i}" cx="${polarX(v, i)}" cy="${polarY(v, i)}" r="4" class="radar-dot"/>`;
+    });
+    svg.innerHTML = html;
+  }
+
+  initRadar();
+
+  // ── Build Bars ──
+  function initBars() {
+    const el = document.getElementById('bars');
+    cats.forEach((c, i) => {
+      const div = document.createElement('div');
+      div.className = 'bar-group';
+      div.id = `bar-${i}`;
+      div.innerHTML = buildBarHTML(c, i, currScores[i], prevScores[i]);
+      el.appendChild(div);
+    });
+  }
+
+  function buildBarHTML(cat, idx, curr, prev) {
+    const delta = curr - prev;
+    let deltaStr = '=', deltaClass = 'neutral';
+    if (delta > 0) { deltaStr = '+' + delta; deltaClass = 'positive'; }
+    else if (delta < 0) { deltaStr = '' + delta; deltaClass = 'negative'; }
+    return `
+      <div class="bar-header">
+        <span class="bar-cat">${catIcons[cat]} ${cat}</span>
+        <div class="bar-scores">
+          <span class="bar-score-curr">${curr}/10</span>
+          <span class="bar-delta ${deltaClass}">${deltaStr}</span>
+        </div>
+      </div>
+      <div class="bar-track">
+        <div class="bar-fill-prev" style="width:${prev * 10}%"></div>
+        <div class="bar-fill-curr" style="width:${curr * 10}%"></div>
+      </div>
+    `;
+  }
+
+  initBars();
+
+  // ── Live updates ──
+  function getScores() {
+    const c = [], p = [];
+    document.querySelectorAll('#sliders-curr input[type=range]').forEach(s => c.push(+s.value));
+    document.querySelectorAll('#sliders-prev input[type=range]').forEach(s => p.push(+s.value));
+    return { curr: c, prev: p };
+  }
+
+  function updateCharts() {
+    const { curr, prev } = getScores();
+    // Radar
+    document.getElementById('radar-prev').setAttribute('points', polyPoints(prev));
+    document.getElementById('radar-curr').setAttribute('points', polyPoints(curr));
+    curr.forEach((v, i) => {
+      const dot = document.getElementById(`radar-dot-${i}`);
+      dot.setAttribute('cx', polarX(v, i));
+      dot.setAttribute('cy', polarY(v, i));
+    });
+    // Bars
+    cats.forEach((c, i) => {
+      document.getElementById(`bar-${i}`).innerHTML = buildBarHTML(c, i, curr[i], prev[i]);
+    });
+  }
+
+  document.querySelectorAll('input[type=range]').forEach(s => {
+    s.addEventListener('input', function () {
+      const id = `sv-${this.dataset.type}-${this.dataset.idx}`;
+      document.getElementById(id).textContent = this.value;
+      updateCharts();
+    });
+  });
+
+  // ── Attendance live ──
+  function updateAttendance() {
+    const present = parseInt(document.getElementById('p-sess-present').value) || 0;
+    const total = parseInt(document.getElementById('p-sess-total').value) || 0;
+    const pct = total > 0 ? Math.round((present / total) * 100) : 0;
+
+    document.getElementById('att-fill').style.width = pct + '%';
+    document.getElementById('att-pct').textContent = total > 0 ? pct + '%' : '\u2014';
+    document.getElementById('att-detail').textContent = total > 0 ? `${present} van ${total} sessies` : '\u2014';
+
+    const dotsEl = document.getElementById('att-dots');
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('div');
+      d.className = 'att-dot ' + (i < present ? 'present' : 'absent');
+      dotsEl.appendChild(d);
+    }
+  }
+
+  document.getElementById('p-sess-present').addEventListener('input', updateAttendance);
+  document.getElementById('p-sess-total').addEventListener('input', updateAttendance);
+
+  // ── Print prep ──
+  window.addEventListener('beforeprint', function () {
+    const m = document.getElementById('h-month').value;
+    const y = document.getElementById('h-year').value;
+    const name = document.getElementById('h-player').value || document.getElementById('p-name').value || 'Speler';
+    const cat = document.getElementById('h-cat').value;
+
+    document.querySelector('.print-month').textContent = m;
+    document.querySelector('.print-year').textContent = y;
+    document.querySelector('.print-player-name').textContent = name;
+    document.querySelector('.print-cat-top').textContent = cat;
+
+    document.querySelector('.pp-name').textContent = document.getElementById('p-name').value || name;
+    document.querySelector('.pp-age').textContent = document.getElementById('p-age').value || '\u2014';
+    document.querySelector('.pp-club').textContent = document.getElementById('p-club').value || '\u2014';
+    document.querySelector('.pp-cat').textContent = document.getElementById('p-cat').value;
+    document.querySelector('.pp-pos').textContent = document.getElementById('p-pos').value || '\u2014';
+    const sp = document.getElementById('p-sess-present').value || '0';
+    const st = document.getElementById('p-sess-total').value || '0';
+    document.querySelector('.pp-sess').textContent = `${sp}/${st}`;
+
+    document.querySelector('.fb-good-print').textContent = document.getElementById('fb-good').value || '\u2014';
+    document.querySelector('.fb-work-print').textContent = document.getElementById('fb-work').value || '\u2014';
+
+    document.querySelector('.gp-1').textContent = document.getElementById('goal-1').value || '\u2014';
+    document.querySelector('.gp-2').textContent = document.getElementById('goal-2').value || '\u2014';
+    document.querySelector('.gp-3').textContent = document.getElementById('goal-3').value || '\u2014';
+  });
+
+  // ── Download PDF ──
+  window.downloadPDF = function () {
+    window.print();
+  };
+
+  // ── Next month helper ──
+  const months = ['januari','februari','maart','april','mei','juni','juli','augustus','september','oktober','november','december'];
+
+  function nextMonth() {
+    const mi = months.indexOf(document.getElementById('h-month').value);
+    return mi === 11 ? months[0] : months[mi + 1];
+  }
+
+  // ── WhatsApp copy ──
+  window.copyWhatsApp = function () {
+    const { curr, prev } = getScores();
+    const name = document.getElementById('h-player').value || document.getElementById('p-name').value || 'Speler';
+    const age = document.getElementById('p-age').value || '?';
+    const cat = document.getElementById('h-cat').value;
+    const club = document.getElementById('p-club').value || '?';
+    const pos = document.getElementById('p-pos').value || '?';
+    const sp = document.getElementById('p-sess-present').value || '0';
+    const st = document.getElementById('p-sess-total').value || '0';
+    const m = document.getElementById('h-month').value;
+    const y = document.getElementById('h-year').value;
+
+    const waIcons = ['\u2699\uFE0F', '\u26A1', '\uD83E\uDDE0', '\uD83C\uDFAF', '\uD83D\uDD25'];
+
+    function deltaStr(c, p) {
+      const d = c - p;
+      if (d > 0) return '+' + d;
+      if (d < 0) return '' + d;
+      return '=';
+    }
+
+    function bullets(text) {
+      if (!text) return '\u2014';
+      return text.split('\n').filter(l => l.trim()).map(l => '\u2022 ' + l.trim()).join('\n');
+    }
+
+    const fbGood = document.getElementById('fb-good').value;
+    const fbWork = document.getElementById('fb-work').value;
+
+    const goals = [
+      document.getElementById('goal-1').value,
+      document.getElementById('goal-2').value,
+      document.getElementById('goal-3').value
+    ].filter(g => g.trim());
+
+    const goalsStr = goals.length ? goals.map(g => '\u2022 ' + g).join('\n') : '\u2014';
+
+    const text =
+`\u26BD *Maandrapport Eman Academy*
+\uD83D\uDCC5 ${m} ${y}
+
+\uD83D\uDC64 ${name} (${age}) \u2014 ${cat} \u2014 ${club}
+\uD83D\uDCCD Positie: ${pos}
+\u2705 Aanwezigheid: ${sp}/${st} sessies
+
+\uD83D\uDCCA *Scores:*
+${cats.map((c, i) => `${waIcons[i]} ${c}: ${curr[i]}/10 (${deltaStr(curr[i], prev[i])})`).join('\n')}
+
+\uD83D\uDCAA *Wat goed ging:*
+${bullets(fbGood)}
+
+\uD83C\uDFAF *Waar we aan werken:*
+${bullets(fbWork)}
+
+\uD83C\uDFC1 *Doelen ${nextMonth()}:*
+${goalsStr}
+
+\u2014 Coach Sam | Eman Academy
+"Echte training voelt zo."`;
+
+    navigator.clipboard.writeText(text).then(function () {
+      const toast = document.getElementById('copy-toast');
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 2000);
+    }).catch(function () {
+      // Fallback
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const toast = document.getElementById('copy-toast');
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 2000);
+    });
+  };
+})();
+</script>
+</body>
+</html>

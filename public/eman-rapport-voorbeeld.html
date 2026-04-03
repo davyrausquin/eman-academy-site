@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maandrapport — Eman Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --white: #ffffff;
+    --gold: #d4a843;
+    --green: #22c55e;
+    --gray-100: #f7f8fa;
+    --gray-200: #e5e7eb;
+    --gray-400: #9ca3af;
+    --gray-600: #4b5563;
+    --gray-800: #1f2937;
+    --radius: 12px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,0.10);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--gray-100);
+    color: var(--gray-800);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+  }
+
+  /* ---- CARD ---- */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    padding: 28px 24px;
+    margin-bottom: 16px;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+  .card:nth-child(1) { animation-delay: 0.05s; }
+  .card:nth-child(2) { animation-delay: 0.12s; }
+  .card:nth-child(3) { animation-delay: 0.19s; }
+  .card:nth-child(4) { animation-delay: 0.26s; }
+  .card:nth-child(5) { animation-delay: 0.33s; }
+  .card:nth-child(6) { animation-delay: 0.40s; }
+  .card:nth-child(7) { animation-delay: 0.47s; }
+  .card:nth-child(8) { animation-delay: 0.54s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+    margin-bottom: 18px;
+  }
+
+  /* ---- HEADER ---- */
+  .header {
+    text-align: center;
+    padding: 40px 24px 32px;
+    background: var(--primary);
+    color: var(--white);
+    border-radius: var(--radius);
+  }
+  .logo {
+    width: 64px; height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+    font-weight: 700; font-size: 22px;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+  .header h1 {
+    font-size: 28px; font-weight: 700; margin-bottom: 4px;
+  }
+  .header .subtitle {
+    font-size: 15px; font-weight: 400; opacity: 0.7; margin-bottom: 20px;
+  }
+  .header .player-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 6px 20px;
+    font-size: 15px; font-weight: 500;
+  }
+
+  /* ---- PROFIEL ---- */
+  .profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 24px;
+  }
+  .profile-item { }
+  .profile-label {
+    font-size: 12px; font-weight: 500; color: var(--gray-400); text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .profile-value {
+    font-size: 15px; font-weight: 600; color: var(--primary); margin-top: 2px;
+  }
+
+  /* ---- RADAR ---- */
+  .radar-wrap {
+    display: flex; justify-content: center; padding: 8px 0;
+  }
+  .radar-legend {
+    display: flex; gap: 20px; justify-content: center; margin-top: 12px; font-size: 13px; color: var(--gray-600);
+  }
+  .radar-legend span::before {
+    content: ''; display: inline-block; width: 12px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: middle;
+  }
+  .radar-legend .current::before { background: var(--primary); }
+  .radar-legend .previous::before { background: var(--gray-400); }
+
+  /* ---- BARS ---- */
+  .bar-row {
+    display: flex; align-items: center; margin-bottom: 14px;
+  }
+  .bar-row:last-child { margin-bottom: 0; }
+  .bar-label {
+    width: 100px; flex-shrink: 0; font-size: 14px; font-weight: 500; color: var(--gray-800);
+  }
+  .bar-track {
+    flex: 1; height: 28px; background: var(--gray-100); border-radius: 6px; position: relative; overflow: hidden;
+  }
+  .bar-prev {
+    position: absolute; top: 0; left: 0; height: 100%; background: var(--gray-200); border-radius: 6px;
+    transition: width 0.8s cubic-bezier(0.22,1,0.36,1);
+    width: 0;
+  }
+  .bar-curr {
+    position: absolute; top: 0; left: 0; height: 100%; background: var(--primary); border-radius: 6px;
+    transition: width 0.8s cubic-bezier(0.22,1,0.36,1);
+    transition-delay: 0.15s;
+    width: 0;
+  }
+  .bar-score {
+    width: 32px; flex-shrink: 0; text-align: right; font-size: 15px; font-weight: 700; color: var(--primary); margin-left: 10px;
+  }
+  .bar-delta {
+    width: 32px; flex-shrink: 0; text-align: center; font-size: 13px; font-weight: 600; margin-left: 4px;
+  }
+  .bar-delta.up { color: var(--green); }
+  .bar-delta.eq { color: var(--gray-400); }
+
+  /* ---- FEEDBACK ---- */
+  .feedback-section { margin-bottom: 24px; }
+  .feedback-section:last-child { margin-bottom: 0; }
+  .feedback-heading {
+    font-size: 16px; font-weight: 600; color: var(--primary); margin-bottom: 12px;
+  }
+  .feedback-heading .icon { margin-right: 6px; }
+  .feedback-item {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--gray-600);
+  }
+  .feedback-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 9px;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  /* ---- GOALS ---- */
+  .goal-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 14px; font-size: 14px; color: var(--gray-600); line-height: 1.6;
+  }
+  .goal-item:last-child { margin-bottom: 0; }
+  .goal-circle {
+    width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px;
+    border-radius: 50%; border: 2px solid var(--primary);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .goal-circle::after {
+    content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--primary); opacity: 0.25;
+  }
+
+  /* ---- ATTENDANCE ---- */
+  .attendance-bar-track {
+    height: 10px; background: var(--gray-200); border-radius: 100px; overflow: hidden; margin-bottom: 10px;
+  }
+  .attendance-bar-fill {
+    height: 100%; background: var(--green); border-radius: 100px;
+    width: 0; transition: width 1s cubic-bezier(0.22,1,0.36,1) 0.5s;
+  }
+  .attendance-dots {
+    display: flex; gap: 8px; justify-content: center; margin-bottom: 8px;
+  }
+  .attendance-dot {
+    width: 14px; height: 14px; border-radius: 50%; background: var(--primary);
+  }
+  .attendance-label {
+    text-align: center; font-size: 14px; font-weight: 500; color: var(--gray-600);
+  }
+
+  /* ---- FOOTER ---- */
+  .footer {
+    text-align: center;
+    padding: 32px 24px 8px;
+    font-size: 13px;
+    color: var(--gray-400);
+    line-height: 1.8;
+  }
+  .footer .tagline {
+    font-size: 15px; font-weight: 600; color: var(--primary); margin-bottom: 8px;
+  }
+  .footer a { color: var(--gray-400); text-decoration: none; }
+  .footer a:hover { color: var(--primary); }
+  .footer .catalina {
+    margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--gray-200);
+    font-size: 12px; letter-spacing: 0.03em;
+  }
+
+  /* ---- PRINT ---- */
+  @media print {
+    body { background: #fff; }
+    .container { padding: 0; max-width: 100%; }
+    .card {
+      opacity: 1; transform: none; animation: none;
+      box-shadow: none; border: 1px solid #e5e7eb;
+      break-inside: avoid; page-break-inside: avoid;
+      margin-bottom: 12px;
+    }
+    .header { color-adjust: exact; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .bar-prev, .bar-curr { transition: none; }
+    .attendance-bar-fill { transition: none; }
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (min-width: 480px) {
+    .container { padding: 32px 24px 56px; }
+    .card { padding: 32px 28px; }
+  }
+  @media (min-width: 680px) {
+    .container { padding: 40px 0 64px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 1. HEADER -->
+  <div class="card header" style="animation-delay:0.05s;">
+    <div class="logo">EA</div>
+    <h1>Maandrapport</h1>
+    <div class="subtitle">Maart 2026</div>
+    <div class="player-tag">Jayden &middot; JO-13</div>
+  </div>
+
+  <!-- 2. SPELERPROFIEL -->
+  <div class="card" style="animation-delay:0.12s;">
+    <div class="card-title">Spelerprofiel</div>
+    <div class="profile-grid">
+      <div class="profile-item"><div class="profile-label">Naam</div><div class="profile-value">Jayden</div></div>
+      <div class="profile-item"><div class="profile-label">Leeftijd</div><div class="profile-value">11 jaar</div></div>
+      <div class="profile-item"><div class="profile-label">Club</div><div class="profile-value">SV Loosduinen</div></div>
+      <div class="profile-item"><div class="profile-label">Categorie</div><div class="profile-value">JO-13</div></div>
+      <div class="profile-item"><div class="profile-label">Positie</div><div class="profile-value">Aanvaller</div></div>
+      <div class="profile-item"><div class="profile-label">Sessies</div><div class="profile-value">4 van 4</div></div>
+    </div>
+  </div>
+
+  <!-- 3. RADARCHART -->
+  <div class="card" style="animation-delay:0.19s;">
+    <div class="card-title">Ontwikkeling — Radarchart</div>
+    <div class="radar-wrap">
+      <svg id="radarSvg" width="300" height="300" viewBox="0 0 300 300"></svg>
+    </div>
+    <div class="radar-legend">
+      <span class="current">Maart 2026</span>
+      <span class="previous">Februari 2026</span>
+    </div>
+  </div>
+
+  <!-- 4. STAAFDIAGRAM -->
+  <div class="card" style="animation-delay:0.26s;">
+    <div class="card-title">Scores per categorie</div>
+    <div id="barChart"></div>
+  </div>
+
+  <!-- 5. COACH FEEDBACK -->
+  <div class="card" style="animation-delay:0.33s;">
+    <div class="card-title">Coach's Feedback</div>
+
+    <div class="feedback-section">
+      <div class="feedback-heading"><span class="icon">&#128170;</span> Wat goed ging</div>
+      <div class="feedback-item">Mentaal de sterkste van de groep deze maand. Gaf niet op bij de zware conditieoefening terwijl anderen stopten.</div>
+      <div class="feedback-item">Dribbel naar binnen is flink verbeterd — durft nu sneller de actie te zoeken.</div>
+      <div class="feedback-item">Eerste aanname met rechts is betrouwbaar geworden onder druk.</div>
+    </div>
+
+    <div class="feedback-section">
+      <div class="feedback-heading"><span class="icon">&#127919;</span> Waar we aan werken</div>
+      <div class="feedback-item">Passing onder druk: Jayden kaatst te gehaast als er een tegenstander dichtbij komt. We oefenen: ontvangen, hoofd omhoog, dan pas spelen.</div>
+      <div class="feedback-item">Afwerking met links: 80% van zijn schoten gaat met rechts. We trainen elke sessie 3 afwerkvormen met links.</div>
+      <div class="feedback-item">Speelherkenning bij combinaties: Jayden zoekt te vaak zelf de oplossing. We werken aan het vinden van de vrije man.</div>
+    </div>
+  </div>
+
+  <!-- 6. DOELEN KOMENDE MAAND -->
+  <div class="card" style="animation-delay:0.40s;">
+    <div class="card-title">Doelen — April 2026</div>
+    <div class="goal-item">
+      <div class="goal-circle"></div>
+      <div>7 van de 10 passes succesvol afspelen onder druk (gemeten in oefenvorm)</div>
+    </div>
+    <div class="goal-item">
+      <div class="goal-circle"></div>
+      <div>Minimaal 3 afwerkpogingen met links per sessie</div>
+    </div>
+    <div class="goal-item">
+      <div class="goal-circle"></div>
+      <div>1x per sessie bewust de vrije man vinden in een combinatie-oefening</div>
+    </div>
+  </div>
+
+  <!-- 7. AANWEZIGHEID -->
+  <div class="card" style="animation-delay:0.47s;">
+    <div class="card-title">Aanwezigheid</div>
+    <div class="attendance-dots">
+      <div class="attendance-dot"></div>
+      <div class="attendance-dot"></div>
+      <div class="attendance-dot"></div>
+      <div class="attendance-dot"></div>
+    </div>
+    <div class="attendance-bar-track">
+      <div class="attendance-bar-fill" id="attendanceFill"></div>
+    </div>
+    <div class="attendance-label">4 van 4 sessies aanwezig</div>
+  </div>
+
+  <!-- 8. FOOTER -->
+  <div class="footer card" style="animation-delay:0.54s; background: transparent; box-shadow: none;">
+    <div class="tagline">Eman Academy — Echte training voelt zo.</div>
+    <div><a href="https://www.emanacademy.nl">www.emanacademy.nl</a></div>
+    <div>info@emanacademy.nl &middot; +31 6 00 00 00 00</div>
+    <div class="catalina">Een Catalina Group onderneming</div>
+  </div>
+
+</div>
+
+<script>
+(function() {
+  // --- DATA ---
+  const categories = ['Techniek', 'Snelheid', 'Mentaliteit', 'Passing', 'Afwerking'];
+  const current    = [7, 6, 8, 5, 7];
+  const previous   = [6, 6, 7, 5, 6];
+
+  // --- RADAR CHART ---
+  const svg = document.getElementById('radarSvg');
+  const cx = 150, cy = 150, maxR = 115;
+  const n = 5;
+  const angleStep = (2 * Math.PI) / n;
+  const startAngle = -Math.PI / 2; // top
+
+  function polarToXY(angle, r) {
+    return [cx + r * Math.cos(angle), cy + r * Math.sin(angle)];
+  }
+
+  function svgEl(tag, attrs) {
+    const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+  }
+
+  // Grid rings at 2, 4, 6, 8, 10
+  [2, 4, 6, 8, 10].forEach(level => {
+    const r = (level / 10) * maxR;
+    const pts = [];
+    for (let i = 0; i < n; i++) {
+      pts.push(polarToXY(startAngle + i * angleStep, r).join(','));
+    }
+    svg.appendChild(svgEl('polygon', {
+      points: pts.join(' '),
+      fill: 'none', stroke: '#e5e7eb', 'stroke-width': level === 10 ? 1.2 : 0.7
+    }));
+  });
+
+  // Axis lines
+  for (let i = 0; i < n; i++) {
+    const [x, y] = polarToXY(startAngle + i * angleStep, maxR);
+    svg.appendChild(svgEl('line', {
+      x1: cx, y1: cy, x2: x, y2: y,
+      stroke: '#e5e7eb', 'stroke-width': 0.7
+    }));
+  }
+
+  // Data polygons
+  function makeDataPoly(scores, fillColor, strokeColor, strokeDash, id) {
+    const pts = scores.map((s, i) => {
+      const [x, y] = polarToXY(startAngle + i * angleStep, (s / 10) * maxR);
+      return x + ',' + y;
+    }).join(' ');
+    const poly = svgEl('polygon', {
+      points: pts, fill: fillColor, stroke: strokeColor,
+      'stroke-width': 2, 'stroke-linejoin': 'round',
+      ...(strokeDash ? { 'stroke-dasharray': '6 4' } : {})
+    });
+    if (id) poly.id = id;
+    svg.appendChild(poly);
+    return poly;
+  }
+
+  // Previous (dashed, light)
+  makeDataPoly(previous, 'rgba(156,163,175,0.1)', '#9ca3af', true, 'radarPrev');
+  // Current (solid)
+  makeDataPoly(current, 'rgba(26,58,92,0.15)', '#1a3a5c', false, 'radarCurr');
+
+  // Score labels
+  current.forEach((s, i) => {
+    const [x, y] = polarToXY(startAngle + i * angleStep, (s / 10) * maxR + 16);
+    const txt = svgEl('text', {
+      x, y: y + 1, 'text-anchor': 'middle', 'dominant-baseline': 'middle',
+      'font-size': '13', 'font-weight': '700', fill: '#1a3a5c', 'font-family': 'Inter, sans-serif'
+    });
+    txt.textContent = s;
+    svg.appendChild(txt);
+  });
+
+  // Category labels
+  const labelOffsets = [
+    { dx: 0, dy: -14 },   // top
+    { dx: 14, dy: 0 },    // right-top
+    { dx: 10, dy: 10 },   // right-bottom
+    { dx: -10, dy: 10 },  // left-bottom
+    { dx: -14, dy: 0 }    // left-top
+  ];
+  categories.forEach((cat, i) => {
+    const [x, y] = polarToXY(startAngle + i * angleStep, maxR + 26);
+    const txt = svgEl('text', {
+      x: x + labelOffsets[i].dx, y: y + labelOffsets[i].dy,
+      'text-anchor': 'middle', 'dominant-baseline': 'middle',
+      'font-size': '12', 'font-weight': '500', fill: '#4b5563', 'font-family': 'Inter, sans-serif'
+    });
+    txt.textContent = cat;
+    svg.appendChild(txt);
+  });
+
+  // Radar animate: start from center, expand out
+  function animateRadar() {
+    const dur = 800;
+    const start = performance.now();
+    const currTargets = current.map((s, i) => polarToXY(startAngle + i * angleStep, (s / 10) * maxR));
+    const prevTargets = previous.map((s, i) => polarToXY(startAngle + i * angleStep, (s / 10) * maxR));
+    const polyC = document.getElementById('radarCurr');
+    const polyP = document.getElementById('radarPrev');
+
+    function frame(now) {
+      let t = Math.min((now - start) / dur, 1);
+      t = 1 - Math.pow(1 - t, 3); // ease-out cubic
+      const cPts = currTargets.map(([x, y]) => (cx + (x - cx) * t) + ',' + (cy + (y - cy) * t)).join(' ');
+      const pPts = prevTargets.map(([x, y]) => (cx + (x - cx) * t) + ',' + (cy + (y - cy) * t)).join(' ');
+      polyC.setAttribute('points', cPts);
+      polyP.setAttribute('points', pPts);
+      if (t < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  // --- BAR CHART ---
+  const barContainer = document.getElementById('barChart');
+  categories.forEach((cat, i) => {
+    const delta = current[i] - previous[i];
+    const deltaText = delta > 0 ? '+' + delta : '=';
+    const deltaClass = delta > 0 ? 'up' : 'eq';
+
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML =
+      '<div class="bar-label">' + cat + '</div>' +
+      '<div class="bar-track">' +
+        '<div class="bar-prev" data-w="' + (previous[i] * 10) + '"></div>' +
+        '<div class="bar-curr" data-w="' + (current[i] * 10) + '"></div>' +
+      '</div>' +
+      '<div class="bar-score">' + current[i] + '</div>' +
+      '<div class="bar-delta ' + deltaClass + '">' + deltaText + '</div>';
+    barContainer.appendChild(row);
+  });
+
+  // --- TRIGGER ANIMATIONS ON SCROLL ---
+  function onVisible(el, cb) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { cb(); obs.disconnect(); } });
+    }, { threshold: 0.3 });
+    obs.observe(el);
+  }
+
+  // Radar
+  onVisible(document.getElementById('radarSvg'), animateRadar);
+
+  // Bars
+  onVisible(barContainer, function() {
+    barContainer.querySelectorAll('.bar-prev').forEach(el => { el.style.width = el.dataset.w + '%'; });
+    barContainer.querySelectorAll('.bar-curr').forEach(el => { el.style.width = el.dataset.w + '%'; });
+  });
+
+  // Attendance
+  onVisible(document.getElementById('attendanceFill'), function() {
+    document.getElementById('attendanceFill').style.width = '100%';
+  });
+})();
+</script>
+</body>
+</html>
